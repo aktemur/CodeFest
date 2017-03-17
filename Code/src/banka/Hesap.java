@@ -1,7 +1,7 @@
 package banka;
 
 class Hesap {
-    private int bakiye = 0;
+    int bakiye = 0;
 
     public void paraYatir(int d) {
         bakiye += d;

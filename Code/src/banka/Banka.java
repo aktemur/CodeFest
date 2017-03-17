@@ -3,7 +3,7 @@ package banka;
 import java.util.*;
 
 public class Banka {
-    static int MUSTERI_SAYISI = 2;
+    static int MUSTERI_SAYISI = 5;
     
     public static void main(String[] args) throws InterruptedException {
         List<Musteri> musteriler = new ArrayList<Musteri>();
