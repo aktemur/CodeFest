@@ -1,5 +1,6 @@
 package pi;
 
+import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.*;
 
@@ -17,23 +18,32 @@ public class Main {
     // "seed" (tohum) degeri ile olustur.
     static Random rastgele = new Random(0);
 
-    static int MAX = 50000000;
+    static int MAX = 100000000;
 
-    public static void main(String[] args) {
+    static ArrayList<PiBulucu> threadler = new ArrayList<>();
+
+    public static void main(String[] args) throws InterruptedException {
         double pi = 0;
+
+        for (int i = 0; i < 8; i++) {
+            threadler.add(new PiBulucu(i, MAX/8));
+        }
+
         long baslangic = System.currentTimeMillis();
 
-        int icerdekiler = 0;
-
-        for (int i = 0; i < MAX; i++) {
-            double x = rastgele.nextDouble();
-            double y = rastgele.nextDouble();
-            double uzaklik = Math.sqrt(x*x + y*y);
-            if (uzaklik <= 1) {
-                icerdekiler++;
-            }
+        for (int i = 0; i < 8; i++) {
+            threadler.get(i).start();
         }
-        pi = 4.0 * icerdekiler / MAX;
+        for (int i = 0; i < 8; i++) {
+            threadler.get(i).join();
+        }
+
+        int iceridekiler = 0;
+        for (int i = 0; i < 8; i++) {
+            iceridekiler += threadler.get(i).iceridekiler;
+        }
+
+        pi = 4.0 * iceridekiler / MAX;
 
         long bitis = System.currentTimeMillis();
         long sure = bitis - baslangic;
