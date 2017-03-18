@@ -1,8 +1,8 @@
 package billboard;
 
 class Billboard {
-    private final int LENGTH = 12;
-    private char[] signs = new char[LENGTH];
+    final int LENGTH = 12;
+    char[] signs = new char[LENGTH];
 
     public void write(String message) throws InterruptedException {
         if (message.length() != signs.length) {

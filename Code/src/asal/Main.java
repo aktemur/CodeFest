@@ -29,7 +29,7 @@ public class Main {
     public static void main(String[] args) {
         long baslangic = System.currentTimeMillis();
 
-        int asalAdedi = 0;
+        int asalAdedi = 1;
         for (int i = 3; i < MAX; i += 2) {
             if (asal(i)) {
                 asalAdedi++;
