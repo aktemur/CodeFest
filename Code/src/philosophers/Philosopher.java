@@ -16,13 +16,19 @@ class Philosopher extends Thread {
             try{
                 think();
 
+                // DIKKAT: Bu cozum herkesin birbirini beklemesi
+                // anlamina gelen "deadlock" durumuna neden olabilir.
+                leftStick.kilit.lock();
                 leftStick.take(this);
+                rightStick.kilit.lock();
                 rightStick.take(this);
 
                 eat();
 
                 leftStick.put(this);
+                leftStick.kilit.unlock();
                 rightStick.put(this);
+                rightStick.kilit.unlock();
 
             } catch(InterruptedException e) {
                 return;

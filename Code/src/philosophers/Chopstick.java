@@ -1,7 +1,12 @@
 package philosophers;
 
+import java.util.Locale;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 class Chopstick {
     int id;
+    Lock kilit = new ReentrantLock();
 
     public Chopstick(int id) {
         this.id = id;
